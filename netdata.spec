@@ -4,7 +4,7 @@
 #
 Name     : netdata
 Version  : 1.11.1
-Release  : 1
+Release  : 2
 URL      : https://github.com/netdata/netdata/releases/download/v1.11.1/netdata-v1.11.1.tar.gz
 Source0  : https://github.com/netdata/netdata/releases/download/v1.11.1/netdata-v1.11.1.tar.gz
 Summary  : No detailed summary available
@@ -14,12 +14,14 @@ Requires: netdata-bin = %{version}-%{release}
 Requires: netdata-data = %{version}-%{release}
 Requires: netdata-libexec = %{version}-%{release}
 BuildRequires : libnetfilter_acct
+BuildRequires : lm-sensors
 BuildRequires : pkgconfig(libcap)
 BuildRequires : pkgconfig(libipmimonitoring)
 BuildRequires : pkgconfig(libmnl)
 BuildRequires : pkgconfig(libnetfilter_acct)
 BuildRequires : pkgconfig(uuid)
 BuildRequires : pkgconfig(zlib)
+BuildRequires : smartmontools
 
 %description
 netdata is the fastest way to visualize metrics. It is a resource
@@ -65,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547163446
+export SOURCE_DATE_EPOCH=1547164874
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -77,7 +79,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1547163446
+export SOURCE_DATE_EPOCH=1547164874
 rm -rf %{buildroot}
 %make_install
 
